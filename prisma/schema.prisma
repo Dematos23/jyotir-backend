@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int           @id @default(autoincrement())
+  email         String?       @unique
+  name          String
+  sName         String?
+  lastname      String
+  sLastname     String?
+  spiritualName String
+  dni           Int           @unique
+  password      String
+  reserva       Reserva[]     @relation("UserReserva")
+  UserReserva   UserReserva[]
+  rol           Rol
+}
+
+model Reserva {
+  id          Int           @id @default(autoincrement())
+  userId      Int
+  name        String
+  userMany    Boolean
+  users       User[]        @relation("UserReserva")
+  UserReserva UserReserva[]
+  clienteMany Boolean
+  clientName  String
+  assistants  Int
+  listaCanal  Canal
+  ambiente    Ambiente
+  fecha       DateTime
+  horaInicio  DateTime
+  horaFin     DateTime
+  implementos Implementos[]
+}
+
+model Dni {
+  id   Int @id @default(autoincrement())
+  dni  Int
+  role Rol
+}
+
+model UserReserva {
+  userId    Int
+  reservaId Int
+
+  user    User    @relation(fields: [userId], references: [id])
+  reserva Reserva @relation(fields: [reservaId], references: [id])
+
+  @@id([userId, reservaId])
+}
+
+enum Rol {
+  SUPER_ADMIN
+  ADMIN
+  EXTERNO
+}
+
+enum Canal {
+  WHATSAPP
+  CORREO
+  TELEFONO
+}
+
+enum Ambiente {
+  SALON_PRINCIPAL
+  SALON_ESPEJO
+  SALA_1
+  CONSULTORIO_1
+  CONSULTORIO_2
+}
+
+enum Implementos {
+  HOJAS
+  LAPICEROS
+  COLORES
+  PAPEL_TOALLA
+  SILLAS_CIRCULO
+  SILLAS_FILA
+}
