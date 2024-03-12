@@ -8,6 +8,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "keywords": [
     "backend",
     "jyotir",
@@ -17,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.10.2",
+    "argon2": "^0.40.1",
     "express": "^4.18.3",
     "nodemon": "^3.1.0"
   },
