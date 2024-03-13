@@ -42,8 +42,8 @@ model Reserva {
 
 model Dni {
   id   Int @id @default(autoincrement())
-  dni  Int
-  role Rol
+  dni  Int @unique
+  rol Rol
 }
 
 model UserReserva {
