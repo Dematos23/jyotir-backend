@@ -5,7 +5,10 @@ const dni = require("./seeds/dni.seed")
 const fs = require("fs")
 
 async function main() {
-  await Promise.all([superadmin(prisma), dni(prisma)])
+  await Promise.all([
+    superadmin(prisma), 
+    dni(prisma)
+  ])
 }
 
 main()

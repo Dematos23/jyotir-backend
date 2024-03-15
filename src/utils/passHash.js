@@ -1,6 +1,6 @@
 const argon2 = require("argon2");
 
-async function hashPass(pass) {
+async function passHash(pass) {
   try {
     const hash = await argon2.hash(pass);
     console.log(pass);
@@ -12,4 +12,4 @@ async function hashPass(pass) {
   }
 }
 
-module.exports = hashPass;
+module.exports = passHash;

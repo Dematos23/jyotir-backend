@@ -1,8 +1,7 @@
-const hashPass = require("../../utils/hashPass.js")
-const { hash } = require("argon2")
+const passHash = require("../../src/utils/passHash.js")
 
 async function superadmin(prisma) {
-  const password = await hashPass("alessandra")
+  const password = await passHash("alessandra")
 
   await prisma.user.upsert({
     create: {
