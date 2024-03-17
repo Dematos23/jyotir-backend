@@ -1,13 +1,14 @@
 const { Router } = require("express");
 const ReservaController = require("../controllers/reserva.controller")
-// const reservaController = new ReservaController() 
+const loginValidator = require("../middlewares/loginValidator")
 
 const reservaRouter = Router();
 
 reservaRouter
-    .get("/req-reserva", ReservaController.get)
-    .post("/req-reserva", ReservaController.crear)
-    .delete("/req-reserva", ReservaController.delete)
-    .put("/req-reserva", ReservaController.put)
+    .route("/req-reserva")
+    .get(loginValidator,ReservaController.get)
+    .post(loginValidator, ReservaController.crear)
+    .delete(loginValidator, ReservaController.delete)
+    .put(loginValidator, ReservaController.put)
 
 module.exports = reservaRouter;

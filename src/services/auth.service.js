@@ -1,5 +1,5 @@
 const prisma = require("../utils/prisma");
-const passVerify = require("../utils/passVerify");
+const passVerify = require("../middlewares/passVerify");
 const token = require("../utils/token");
 
 class AuthService {
@@ -13,7 +13,6 @@ class AuthService {
         name: true,
         lastname: true,
         spiritualName: true,
-        password: true,
         rol: true,
       },
     });
