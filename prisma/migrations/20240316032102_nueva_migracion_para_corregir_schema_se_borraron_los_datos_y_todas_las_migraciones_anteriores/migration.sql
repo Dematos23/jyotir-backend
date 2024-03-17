@@ -10,6 +10,9 @@ CREATE TYPE "Ambiente" AS ENUM ('SALON_PRINCIPAL', 'SALON_ESPEJO', 'SALA_1', 'CO
 -- CreateEnum
 CREATE TYPE "Implementos" AS ENUM ('HOJAS', 'LAPICEROS', 'COLORES', 'PAPEL_TOALLA', 'SILLAS_CIRCULO', 'SILLAS_FILA');
 
+-- CreateEnum
+CREATE TYPE "Estados" AS ENUM ('PENDIENTE', 'APROBADO', 'RECHAZADO');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
@@ -29,18 +32,22 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Reserva" (
     "id" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "evaluatedAt" TIMESTAMP(3),
     "userId" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
     "userMany" BOOLEAN NOT NULL,
     "clienteMany" BOOLEAN NOT NULL,
     "clientName" TEXT NOT NULL,
     "assistants" INTEGER NOT NULL,
-    "listaCanal" "Canal" NOT NULL,
+    "listaCanal" "Canal",
     "ambiente" "Ambiente" NOT NULL,
     "fecha" TIMESTAMP(3) NOT NULL,
     "horaInicio" TIMESTAMP(3) NOT NULL,
     "horaFin" TIMESTAMP(3) NOT NULL,
     "implementos" "Implementos"[],
+    "estado" "Estados" NOT NULL DEFAULT 'PENDIENTE',
 
     CONSTRAINT "Reserva_pkey" PRIMARY KEY ("id")
 );
@@ -49,7 +56,7 @@ CREATE TABLE "Reserva" (
 CREATE TABLE "Dni" (
     "id" SERIAL NOT NULL,
     "dni" INTEGER NOT NULL,
-    "role" "Rol" NOT NULL,
+    "rol" "Rol" NOT NULL,
 
     CONSTRAINT "Dni_pkey" PRIMARY KEY ("id")
 );
@@ -73,6 +80,9 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_dni_key" ON "User"("dni");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Dni_dni_key" ON "Dni"("dni");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_UserReserva_AB_unique" ON "_UserReserva"("A", "B");

@@ -23,21 +23,26 @@ model User {
 }
 
 model Reserva {
-  id          Int           @id @default(autoincrement())
-  userId      Int
-  name        String
-  userMany    Boolean
-  users       User[]        @relation("UserReserva")
-  UserReserva UserReserva[]
-  clienteMany Boolean
-  clientName  String
-  assistants  Int
-  listaCanal  Canal
-  ambiente    Ambiente
-  fecha       DateTime
-  horaInicio  DateTime
-  horaFin     DateTime
-  implementos Implementos[]
+  id                 Int           @id @default(autoincrement())
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  evaluatedAt        DateTime?
+  userId             Int
+  name               String
+  userMany           Boolean
+  users              User[]        @relation("UserReserva")
+  UserReserva        UserReserva[]
+  clienteMany        Boolean
+  clientName         String?
+  assistants         Int
+  listaCanal         Canal?
+  ambienteSolicitado Ambiente
+  ambienteAsignado   Ambiente?
+  fecha              DateTime
+  horaInicio         DateTime
+  horaFin            DateTime
+  implementos        Implementos[]
+  estado             Estados       @default(PENDIENTE)
 }
 
 model Dni {
@@ -83,4 +88,10 @@ enum Implementos {
   PAPEL_TOALLA
   SILLAS_CIRCULO
   SILLAS_FILA
+}
+
+enum Estados {
+  PENDIENTE
+  APROBADO
+  RECHAZADO
 }

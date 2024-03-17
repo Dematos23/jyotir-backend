@@ -3,10 +3,10 @@ const passVerify = require("../utils/passVerify");
 const token = require("../utils/token");
 
 class AuthService {
-  static async login({ email, pass }) {
+  static async login(body) {
     const user = await prisma.user.findUnique({
       where: {
-        email: email,
+        email: body.email,
       },
       select: {
         id: true,
@@ -16,13 +16,13 @@ class AuthService {
         password: true,
         rol: true,
       },
-      rejectOnNotFound: true,
     });
-    if (passVerify(user.password, pass)) {
-        const payload = token(user)
-        return {message: "Login correcto", payload}
-    } else{
-        return {message: "Credenciales incorrectas"}
+    
+    if (passVerify(user.password, body.password)) {
+      const payload = token(user);
+      return { message: "Login correcto", payload };
+    } else {
+      return { message: "Credenciales incorrectas" };
     }
   }
 }

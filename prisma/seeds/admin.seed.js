@@ -1,10 +1,10 @@
-const passHash = require("../../src/utils/passHash.js")
+const passHash = require("../../src/utils/passHash.js");
 
 async function superadmin(prisma) {
-  const password = await passHash("alessandra")
+  const password = await passHash("alessandra");
 
-  await prisma.user.upsert({
-    create: {
+  await prisma.user.create({
+    data: {
       email: "dematos23@gmail.com",
       name: "Diego",
       sName: "Enrique",
@@ -15,13 +15,7 @@ async function superadmin(prisma) {
       password: password,
       rol: "SUPER_ADMIN",
     },
-    where: {
-      email: "dematos23@gmail.com",
-    },
-    update: {
-      password: password,
-    },
-  })
+  });
 }
 
-module.exports = superadmin
+module.exports = superadmin;
