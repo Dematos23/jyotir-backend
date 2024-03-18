@@ -27,7 +27,7 @@ async function loginValidator(req, res, next) {
     where: { id: resultado.id },
     select: { id: true },
   });
-
+  console.log(user);
   req.body.id = user;
   next();
 }
