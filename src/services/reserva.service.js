@@ -10,7 +10,7 @@ class ReservaService {
 
   static async get(data) {
     const reservas = await prisma.reserva.findMany({
-      where: { id: data.id },
+      where: { userId: data.userId },
     });
     return reservas;
   }

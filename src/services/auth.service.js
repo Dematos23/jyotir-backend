@@ -13,11 +13,12 @@ class AuthService {
         name: true,
         lastname: true,
         spiritualName: true,
+        password: true,
         rol: true,
       },
     });
-    
     if (passVerify(user.password, body.password)) {
+      delete user.password;
       const payload = token(user);
       return { message: "Login correcto", payload };
     } else {

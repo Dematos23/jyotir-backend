@@ -11,14 +11,11 @@ function validarToken(token) {
 }
 
 async function loginValidator(req, res, next) {
-  if (!req.headers.authorization) {
+  if (!req.headers.token) {
     return res.status(403).json({ message: "Sin datos de inicio de sesión" });
   }
-
-  //   const token = req.headers.authorization.split(" ")[1];
-  const token = req.headers.authorization;
+  const token = req.headers.token;
   const resultado = validarToken(token);
-  console.log(resultado);
   if (resultado instanceof jwt.JsonWebTokenError) {
     return res.status(401).json({ message: "Credenciales inválidas" });
   }
@@ -27,8 +24,7 @@ async function loginValidator(req, res, next) {
     where: { id: resultado.id },
     select: { id: true },
   });
-  console.log(user);
-  req.body.id = user;
+  req.body.userId = user.id;
   next();
 }
 

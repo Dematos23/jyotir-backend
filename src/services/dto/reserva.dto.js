@@ -58,11 +58,11 @@ class ReservaDto {
       implementos,
     };
   }
-  static get({ id }) {
-    if (!{ id }) {
+  static get({ userId }) {
+    if (!{ userId }) {
       throw Error("No se ha pasado un body al Dto");
     }
-    return { id };
+    return { userId };
   }
 
   static delete({ id }) {
