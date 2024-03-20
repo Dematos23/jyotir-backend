@@ -1,6 +1,6 @@
 const prisma = require("../utils/prisma");
 const passVerify = require("../middlewares/passVerify");
-const token = require("../utils/token");
+const jwToken = require("../utils/jwToken");
 
 class AuthService {
   static async login(body) {
@@ -19,8 +19,8 @@ class AuthService {
     });
     if (passVerify(user.password, body.password)) {
       delete user.password;
-      const payload = token(user);
-      return { message: "Login correcto", payload };
+      const token = jwToken(user);
+      return { message: "Login correcto", token };
     } else {
       return { message: "Credenciales incorrectas" };
     }
