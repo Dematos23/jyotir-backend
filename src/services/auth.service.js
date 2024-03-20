@@ -20,7 +20,7 @@ class AuthService {
     if (passVerify(user.password, body.password)) {
       delete user.password;
       const token = jwToken(user);
-      return { message: "Login correcto", token };
+      return { message: "Login correcto", token, user };
     } else {
       return { message: "Credenciales incorrectas" };
     }
