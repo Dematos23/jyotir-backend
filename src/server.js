@@ -10,6 +10,15 @@ const port = process.env.PORT ?? 3001;
 app.use(morgan("dev"));
 app.use(json());
 
+app.use((req, res, next) => {
+  console.log('Solicitud recibida:');
+  console.log('Método:', req.method);
+  console.log('Ruta:', req.url);
+  console.log('Cuerpo:', req);
+  next();
+});
+
+
 app.use(authRouter);
 app.use(reservaRouter);
 
