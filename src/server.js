@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const { json } = require("express");
+const cors = require("cors");
 const authRouter = require("./routes/auth.routes");
 const reservaRouter = require("./routes/reserva.routes");
 
@@ -8,6 +9,7 @@ const app = express();
 const port = process.env.PORT ?? 3001;
 
 app.use(morgan("dev"));
+app.use(cors());
 app.use(json());
 
 app.use((req, res, next) => {
