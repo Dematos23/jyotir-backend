@@ -6,7 +6,7 @@ const dni = require("./seeds/dni.seed")
 async function main() {
   await Promise.all([
     superadmin(prisma), 
-    dni(prisma)
+    // dni(prisma)
   ])
 }
 

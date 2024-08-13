@@ -9,57 +9,57 @@ datasource db {
 
 model User {
   id            Int           @id @default(autoincrement())
-  email         String?       @unique
+  email         String        @unique
   name          String
   sName         String?
   lastname      String
   sLastname     String?
-  spiritualName String
-  dni           Int           @unique
+  spiritualName String?
+  // dni           Int           @unique
   password      String
-  reserva       Reserva[]     @relation("UserReserva")
-  UserReserva   UserReserva[]
+  // reserva       Reserva[]     @relation("UserReserva")
+  // UserReserva   UserReserva[]
   rol           Rol
 }
 
-model Reserva {
-  id                 Int           @id @default(autoincrement())
-  createdAt          DateTime      @default(now())
-  updatedAt          DateTime      @updatedAt
-  evaluatedAt        DateTime?
-  userId             Int
-  name               String
-  userMany           Boolean
-  users              User[]        @relation("UserReserva")
-  UserReserva        UserReserva[]
-  clienteMany        Boolean
-  clientName         String?
-  assistants         Int
-  listaCanal         Canal?
-  ambienteSolicitado Ambiente
-  ambienteAsignado   Ambiente?
-  fecha              DateTime
-  horaInicio         DateTime
-  horaFin            DateTime
-  implementos        Implementos[]
-  estado             Estados       @default(PENDIENTE)
-}
+// model Reserva {
+//   id                 Int           @id @default(autoincrement())
+//   createdAt          DateTime      @default(now())
+//   updatedAt          DateTime      @updatedAt
+//   evaluatedAt        DateTime?
+//   userId             Int
+//   name               String
+//   userMany           Boolean
+//   users              User[]        @relation("UserReserva")
+//   UserReserva        UserReserva[]
+//   clienteMany        Boolean
+//   clientName         String?
+//   assistants         Int
+//   listaCanal         Canal?
+//   ambienteSolicitado Ambiente
+//   ambienteAsignado   Ambiente?
+//   fecha              DateTime
+//   horaInicio         DateTime
+//   horaFin            DateTime
+//   implementos        String?
+//   estado             Estados       @default(PENDIENTE)
+// }
 
-model Dni {
-  id  Int @id @default(autoincrement())
-  dni Int @unique
-  rol Rol
-}
+// model Dni {
+//   id  Int @id @default(autoincrement())
+//   dni Int @unique
+//   rol Rol
+// }
 
-model UserReserva {
-  userId    Int
-  reservaId Int
+// model UserReserva {
+//   userId    Int
+//   reservaId Int
 
-  user    User    @relation(fields: [userId], references: [id])
-  reserva Reserva @relation(fields: [reservaId], references: [id])
+//   user    User    @relation(fields: [userId], references: [id])
+//   reserva Reserva @relation(fields: [reservaId], references: [id])
 
-  @@id([userId, reservaId])
-}
+//   @@id([userId, reservaId])
+// }
 
 enum Rol {
   SUPER_ADMIN
@@ -67,31 +67,31 @@ enum Rol {
   EXTERNO
 }
 
-enum Canal {
-  WHATSAPP
-  CORREO
-  TELEFONO
-}
+// enum Canal {
+//   WHATSAPP
+//   CORREO
+//   TELEFONO
+// }
 
-enum Ambiente {
-  SALON_PRINCIPAL
-  SALON_ESPEJO
-  SALA_1
-  CONSULTORIO_1
-  CONSULTORIO_2
-}
+// enum Ambiente {
+//   SALON_PRINCIPAL
+//   SALON_ESPEJO
+//   SALA_1
+//   CONSULTORIO_1
+//   CONSULTORIO_2
+// }
 
-enum Implementos {
-  HOJAS
-  LAPICEROS
-  COLORES
-  PAPEL_TOALLA
-  SILLAS_CIRCULO
-  SILLAS_FILA
-}
+// enum Implementos {
+//   HOJAS
+//   LAPICEROS
+//   COLORES
+//   PAPEL_TOALLA
+//   SILLAS_CIRCULO
+//   SILLAS_FILA
+// }
 
-enum Estados {
-  PENDIENTE
-  APROBADO
-  RECHAZADO
-}
+// enum Estados {
+//   PENDIENTE
+//   APROBADO
+//   RECHAZADO
+// }

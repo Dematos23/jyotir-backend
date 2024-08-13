@@ -11,7 +11,7 @@ async function superadmin(prisma) {
       lastname: "Matos",
       sLastname: "Castro",
       spiritualName: "Samart",
-      dni: 74147399,
+      // dni: 74147399,
       password: password,
       rol: "SUPER_ADMIN",
     },
