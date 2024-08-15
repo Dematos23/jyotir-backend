@@ -14,6 +14,7 @@ async function users(prisma) {
                     lastname: user.lastname,
                     password: await passHash(user.password),
                     rol: user.rol,
+                    state: user.state
                 },
             })            
         }));

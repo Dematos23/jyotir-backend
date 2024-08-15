@@ -12,9 +12,7 @@ class UsersService{
             select: {
                 email: true,
                 name: true,
-                sName: true,
                 lastname: true,
-                sLastname: true,
                 spiritualName: true,
                 rol: true,
             },

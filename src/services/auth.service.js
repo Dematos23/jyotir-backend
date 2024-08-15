@@ -15,6 +15,7 @@ class AuthService {
         spiritualName: true,
         password: true,
         rol: true,
+        state: true,
       },
     });
     if (passVerify(user.password, body.password)) {

@@ -20,7 +20,7 @@ async function loginValidator(req, res, next) {
     return res.status(401).json({ message: "Credenciales inválidas" });
   }
 
-  const user = await prisma.user.findUnique({
+  const user = await prisma.users.findUnique({
     where: { id: resultado.id },
     select: { id: true },
   });

@@ -4,28 +4,32 @@
         "name": "Juan",
         "lastname": "Perez",
         "password": "juanperez",
-        "rol": "EXTERNO"
+        "rol": "EXTERNO",
+        "state": "ACTIVO"
       },
       {
         "email": "pepe.lucho@gmail.com",
         "name": "Pepe",
         "lastname": "Lucho",
         "password": "pepelucho",
-        "rol": "EXTERNO"
+        "rol": "EXTERNO",
+        "state": "ACTIVO"
       },
       {
         "email": "pepe.torres@gmail.com",
         "name": "Pepe",
         "lastname": "Torres",
         "password": "pepetorres",
-        "rol": "ADMIN"
+        "rol": "ADMIN",
+        "state": "ACTIVO"
       },
       {
         "email": "jyotir@gmail.com",
         "name": "Admin",
         "lastname": "Jyotir",
         "password": "jyotiradmin",
-        "rol": "SUPER_ADMIN"
+        "rol": "SUPER_ADMIN",
+        "state": "ACTIVO"
       }
   ]
   

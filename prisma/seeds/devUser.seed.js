@@ -2,7 +2,7 @@ const passHash = require("../../src/utils/passHash.js");
 
 async function devUser(prisma) {
   const password = await passHash("alessandra");
-
+  
   await prisma.users.create({
     data: {
       email: "dematos23@gmail.com",
@@ -14,6 +14,7 @@ async function devUser(prisma) {
       // dni: 74147399,
       password: password,
       rol: "DEV",
+      state: "ACTIVO"
     },
   });
 }
