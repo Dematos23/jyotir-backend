@@ -1,4 +1,5 @@
 const prisma = require("../utils/prisma");
+const findUser = require("../middlewares/findUser");
 const passVerify = require("../middlewares/passVerify");
 const jwToken = require("../utils/jwToken");
 

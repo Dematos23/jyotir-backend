@@ -27,6 +27,7 @@ class ReservaService {
       where:{ id: data[0].id},
       data: data[1]
     })
+    return reserva;
   }
 }
 
