@@ -1,5 +1,5 @@
 const ReservaService = require("../services/reserva.service");
-const ReservaDto = require("../services/dto/reserva.dto");
+const ReservaDto = require("../services/dtos/reserva.dto");
 
 class ReservaController {
   static async crear(req, res) {
