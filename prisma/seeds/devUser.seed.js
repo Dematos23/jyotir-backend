@@ -1,9 +1,9 @@
 const passHash = require("../../src/utils/passHash.js");
 
-async function superadmin(prisma) {
+async function devUser(prisma) {
   const password = await passHash("alessandra");
 
-  await prisma.user.create({
+  await prisma.users.create({
     data: {
       email: "dematos23@gmail.com",
       name: "Diego",
@@ -13,9 +13,10 @@ async function superadmin(prisma) {
       spiritualName: "Samart",
       // dni: 74147399,
       password: password,
-      rol: "SUPER_ADMIN",
+      rol: "DEV",
     },
   });
 }
 
-module.exports = superadmin;
+module.exports = devUser;
+

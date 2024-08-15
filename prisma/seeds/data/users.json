@@ -1,0 +1,31 @@
+[
+    {
+        "email": "juan.perez@gmail.com",
+        "name": "Juan",
+        "lastname": "Perez",
+        "password": "juanperez",
+        "rol": "EXTERNO"
+      },
+      {
+        "email": "pepe.lucho@gmail.com",
+        "name": "Pepe",
+        "lastname": "Lucho",
+        "password": "pepelucho",
+        "rol": "EXTERNO"
+      },
+      {
+        "email": "pepe.torres@gmail.com",
+        "name": "Pepe",
+        "lastname": "Torres",
+        "password": "pepetorres",
+        "rol": "ADMIN"
+      },
+      {
+        "email": "jyotir@gmail.com",
+        "name": "Admin",
+        "lastname": "Jyotir",
+        "password": "jyotiradmin",
+        "rol": "SUPER_ADMIN"
+      }
+  ]
+  

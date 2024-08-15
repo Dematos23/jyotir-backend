@@ -4,7 +4,7 @@ const jwToken = require("../utils/jwToken");
 
 class AuthService {
   static async login(body) {
-    const user = await prisma.user.findUnique({
+    const user = await prisma.users.findUnique({
       where: {
         email: body.email,
       },

@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id            Int           @id @default(autoincrement())
   email         String        @unique
   name          String
@@ -20,6 +20,13 @@ model User {
   // reserva       Reserva[]     @relation("UserReserva")
   // UserReserva   UserReserva[]
   rol           Rol
+}
+
+enum Rol {
+  DEV
+  SUPER_ADMIN
+  ADMIN
+  EXTERNO
 }
 
 // model Reserva {
@@ -60,12 +67,6 @@ model User {
 
 //   @@id([userId, reservaId])
 // }
-
-enum Rol {
-  SUPER_ADMIN
-  ADMIN
-  EXTERNO
-}
 
 // enum Canal {
 //   WHATSAPP
