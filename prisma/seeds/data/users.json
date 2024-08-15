@@ -4,7 +4,7 @@
         "name": "Juan",
         "lastname": "Perez",
         "password": "juanperez",
-        "rol": "EXTERNO",
+        "role": "EXTERNO",
         "state": "ACTIVO"
       },
       {
@@ -12,7 +12,7 @@
         "name": "Pepe",
         "lastname": "Lucho",
         "password": "pepelucho",
-        "rol": "EXTERNO",
+        "role": "EXTERNO",
         "state": "ACTIVO"
       },
       {
@@ -20,7 +20,7 @@
         "name": "Pepe",
         "lastname": "Torres",
         "password": "pepetorres",
-        "rol": "ADMIN",
+        "role": "ADMIN",
         "state": "ACTIVO"
       },
       {
@@ -28,7 +28,7 @@
         "name": "Admin",
         "lastname": "Jyotir",
         "password": "jyotiradmin",
-        "rol": "SUPER_ADMIN",
+        "role": "SUPER_ADMIN",
         "state": "ACTIVO"
       }
   ]

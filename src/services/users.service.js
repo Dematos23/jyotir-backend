@@ -1,40 +1,33 @@
 const prisma = require("../utils/prisma");
-const jwToken = require("../utils/jwToken");
 
-class UsersService{
-    static async findUser(body) {
-        return await prisma.users.findUnique({
-            where: {
-                email: body.email
-            },
-            select: {
-                id: true,
-                name: true,
-                lastname: true,
-                phone: true,
-                address: true,
-                password: true,
-            }
-        })
-    }
-    static async get(){
-        return await prisma.users.findMany({
-            where: {
-                OR: [
-                    {rol: 'ADMIN'},
-                    {rol: 'EXTERNO'}
-                ]
-            },
-            select: {
-                email: true,
-                name: true,
-                lastname: true,
-                spiritualName: true,
-                rol: true,
-            },
-        });
-        // return users;
-    }
+class UsersService {
+  static async get(body) {
+    const user = await prisma.users.findUnique({
+      where: { id: body.userId },
+      select: { id: true, role: true, state: true },
+    });
+
+    if ((user.state === "INACTIVO")) {
+      return {message: "Usuario inactivo!"};
+    } 
+
+    return await prisma.users.findMany({
+        where: {
+            OR: [
+                {role: 'ADMIN'},
+                {role: 'EXTERNO'}
+            ]
+        },
+        select: {
+            email: true,
+            name: true,
+            lastname: true,
+            spiritualName: true,
+            role: true,
+            state: true
+        },
+    });
+  }
 }
 
 module.exports = UsersService;

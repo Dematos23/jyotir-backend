@@ -1,5 +1,4 @@
 const prisma = require("../utils/prisma");
-const findUser = require("../middlewares/findUser");
 const passVerify = require("../middlewares/passVerify");
 const jwToken = require("../utils/jwToken");
 
@@ -15,7 +14,7 @@ class AuthService {
         lastname: true,
         spiritualName: true,
         password: true,
-        rol: true,
+        role: true,
         state: true,
       },
     });

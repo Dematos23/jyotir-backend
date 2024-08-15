@@ -7,13 +7,11 @@ async function devUser(prisma) {
     data: {
       email: "dematos23@gmail.com",
       name: "Diego",
-      sName: "Enrique",
       lastname: "Matos",
-      sLastname: "Castro",
       spiritualName: "Samart",
       // dni: 74147399,
       password: password,
-      rol: "DEV",
+      role: "DEV",
       state: "ACTIVO"
     },
   });

@@ -13,7 +13,7 @@ async function users(prisma) {
                     name: user.name,
                     lastname: user.lastname,
                     password: await passHash(user.password),
-                    rol: user.rol,
+                    role: user.role,
                     state: user.state
                 },
             })            

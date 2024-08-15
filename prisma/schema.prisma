@@ -11,19 +11,16 @@ model Users {
   id            Int           @id @default(autoincrement())
   email         String        @unique
   name          String
-  // sName         String?
   lastname      String
-  // sLastname     String?
   spiritualName String?
-  // dni           Int           @unique
   password      String
   // reserva       Reserva[]     @relation("UserReserva")
   // UserReserva   UserReserva[]
-  rol           Rol
+  role          Role
   state         UserState
 }
 
-enum Rol {
+enum Role {
   DEV
   SUPER_ADMIN
   ADMIN

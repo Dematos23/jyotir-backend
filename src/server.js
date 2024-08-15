@@ -14,10 +14,6 @@ app.use(cors());
 app.use(json());
 
 app.use((req, res, next) => {
-  console.log('Solicitud recibida:');
-  console.log('Método:', req.method);
-  console.log('Ruta:', req.url);
-  console.log('Cuerpo:', req);
   next();
 });
 
