@@ -32,7 +32,7 @@ async function loginValidator(req, res, next) {
     where: { id: result.id },
     select: { id: true },
   });
-  req.body.userId = user.id;
+  req.body.id = user.id;
   next();
 }
 

@@ -8,7 +8,6 @@ reservaRouter
     .route("/req-reserva")
     .get(loginValidator,ReservaController.get)
     .post(loginValidator, ReservaController.crear)
-    .delete(loginValidator, ReservaController.delete)
     .put(loginValidator, ReservaController.put)
 
 module.exports = reservaRouter;

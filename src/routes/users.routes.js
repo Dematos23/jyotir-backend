@@ -6,6 +6,8 @@ const usersRouter = Router();
 
 usersRouter
     .route('/req-users')
-    .get(loginValidator,ReservaController.get);
+    .post(loginValidator,ReservaController.post)
+    .get(loginValidator,ReservaController.get)
+    .put(loginValidator,ReservaController.put);
 
 module.exports = usersRouter;
