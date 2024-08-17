@@ -1,13 +1,13 @@
 const prisma = require("../utils/prisma");
 
-async function findUser(targetUser) {
-  if (!targetUser.id && !targetUser.email) {
+async function findUser(user) {
+  if (!user.id && !user.email) {
     return {message: "No se ha enviado id ni email"};
   }
   
-  if (targetUser.email) {
+  if (user.email) {
     return await prisma.users.findUnique({
-      where: { email: targetUser.email },
+      where: { email: user.email },
       select: {
         id: true,
         email: true,
@@ -20,9 +20,9 @@ async function findUser(targetUser) {
     });
   }
 
-  if (targetUser.id) {
+  if (user.id) {
     return await prisma.users.findUnique({
-      where: { id: targetUser.id },
+      where: { id: user.id },
       select: {
         id: true,
         email: true,
