@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const prisma = require("../utils/prisma");
 const key = process.env.JWT_SECRET;
+const findUser = require("../utils/findUser");
 
 async function loginValidator(req, res, next) {
   const authHeader = req.headers["authorization"];
@@ -8,9 +9,7 @@ async function loginValidator(req, res, next) {
 
   function tokenDecoder(token) {
     try {
-      // const tokenString = JSON.stringify(token)
       const result = jwt.verify(token, key);
-
       return result;
     } catch (error) {
       return error;
@@ -26,11 +25,13 @@ async function loginValidator(req, res, next) {
     return res.status(401).json({ message: "Credenciales inválidas" });
   }
 
-  const user = await prisma.users.findUnique({
-    where: { id: result.id },
-    select: { id: true, role: true },
-  });
+  const user = await findUser(result);
+
+  if (user.state === "INACTIVO") {
+    return res.status(401).json({ message: "Usuario inactivo, contacta al administrador" });
+  }
   req.body.currentUserId = user.id;
+  req.body.currentUserRole = user.role;  
   next();
 }
 
