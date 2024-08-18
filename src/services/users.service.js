@@ -155,7 +155,9 @@ class UsersService {
   }
 
   static async putProfile(body) {
-    // const targetUser = await findUser(body);
+    const targetUser = await findUser(body);
+    console.log(body);
+    
     return { message: "putProfile Service" };
 
     // mensajes de error
