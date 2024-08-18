@@ -27,7 +27,7 @@ async function passGenerator() {
   const n2 = randomNumber();
   const s1 = randomSpecialChar();
 
-  const password = c1 + v1 + c2 + c3 + v2 + n1 + n2 + s1;
+  const password = c1.toUpperCase() + v1 + c2 + c3 + v2 + n1 + n2 + s1;
   return password;
 }
 

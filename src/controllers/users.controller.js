@@ -4,7 +4,7 @@ class UsersController {
   static async post(req, res) {
     try {
       const user = await UsersService.post(req.body);
-      resstatus(200).json(user);
+      res.status(200).json(user);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -31,6 +31,14 @@ class UsersController {
   static async put(req, res) {
     try {
       const user = await UsersService.put(req.body);
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+  static async putResetPassword(req, res) {
+    try {
+      const user = await UsersService.putResetPassword(req.body);
       res.status(200).json(user);
     } catch (error) {
       res.status(500).json({ error: error.message });

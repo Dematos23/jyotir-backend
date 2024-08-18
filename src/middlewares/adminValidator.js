@@ -7,12 +7,14 @@ async function adminValidator(req, res, next) {
     return res.status(401).json({ message: "Tu usuario se encuentra inactivo!" });
   }
 
-  if (currentUser.role !== "ADMIN" && currentUser.role !== "SUPER_ADMIN" && currentUser.role !== "DEV") {
+  if (
+    currentUser.role !== "ADMIN" &&
+    currentUser.role !== "SUPER_ADMIN" &&
+    currentUser.role !== "DEV"
+  ) {
     return res.status(401).json({ message: "No tienes permisos para realizar esta acción" });
   }
   next();
-  
-
 }
 
 module.exports = adminValidator;

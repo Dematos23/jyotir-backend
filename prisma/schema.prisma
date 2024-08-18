@@ -55,12 +55,6 @@ enum UserState {
 //   estado             Estados       @default(PENDIENTE)
 // }
 
-// model Dni {
-//   id  Int @id @default(autoincrement())
-//   dni Int @unique
-//   rol Rol
-// }
-
 // model UserReserva {
 //   userId    Int
 //   reservaId Int

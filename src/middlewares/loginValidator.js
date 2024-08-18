@@ -31,7 +31,7 @@ async function loginValidator(req, res, next) {
     return res.status(401).json({ message: "Usuario inactivo, contacta al administrador" });
   }
   req.body.currentUserId = user.id;
-  req.body.currentUserRole = user.role;  
+  req.body.currentUserRole = user.role;
   next();
 }
 
