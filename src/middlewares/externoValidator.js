@@ -7,12 +7,14 @@ async function externoValidator(req, res, next) {
     return res.status(401).json({ message: "Tu usuario se encuentra inactivo!" });
   }
 
-  if (currentUser.role !== "EXTERNO") {
+  if (
+    currentUser.role !== "EXTERNO" ||
+    currentUser.role !== "SUPER_ADMIN" ||
+    currentUser.role !== "DEV"
+  ) {
     return res.status(401).json({ message: "No tienes permisos para realizar esta acción" });
   }
   next();
-  
-
 }
 
 module.exports = externoValidator;

@@ -68,7 +68,7 @@ model Clients {
   updatedAt        DateTime              @updatedAt
   name             String
   lastname         String
-  Dni              Int                   @unique
+  dni              String                @unique
   email            String                @unique
   phone            String                @unique
   emergencyContact String?

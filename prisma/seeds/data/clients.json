@@ -2,7 +2,7 @@
     {
       "name": "Ricardo",
       "lastname": "Arjona",
-      "DNI": "11223344",
+      "dni": "11223344",
       "email": "ricardo.arjona@gmail.com",
       "phone": "111222333",
       "emergencyContact": "Sussy Diaz",
@@ -11,7 +11,7 @@
     {
       "name": "Lady",
       "lastname": "Gaga",
-      "DNI": "22334455",
+      "dni": "22334455",
       "email": "lady.gaga@gmail.com",
       "phone": "222333444",
       "emergencyContact": "Bradley Cooper",
@@ -20,7 +20,7 @@
     {
       "name": "Dua",
       "lastname": "Lipa",
-      "DNI": "33445566",
+      "dni": "33445566",
       "email": "dua.lipa@gmail.com",
       "phone": "333444555",
       "emergencyContact": "Anesa Lipa",

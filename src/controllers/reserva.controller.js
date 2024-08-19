@@ -1,7 +1,7 @@
 const ReservaService = require("../services/reserva.service");
 const ReservaDto = require("../services/dtos/reserva.dto");
 
-class ReservaController {
+class ReservationsController {
   static async crear(req, res) {
     try {
       const data = ReservaDto.crear(req.body);
@@ -54,4 +54,4 @@ class ReservaController {
     }
 }}
 
-module.exports = ReservaController;
+module.exports = ReservationsController;

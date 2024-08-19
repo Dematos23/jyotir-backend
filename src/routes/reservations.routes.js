@@ -1,13 +1,14 @@
 const { Router } = require("express");
-const ReservaController = require("../controllers/reserva.controller")
-const loginValidator = require("../middlewares/loginValidator")
+const ReservationsController = require("../controllers/reservations.controller");
+const loginValidator = require("../middlewares/loginValidator");
+const externoValidator = require("../middlewares/externoValidator");
 
 const reservationsRouter = Router();
 
 reservationsRouter
-    .route("/req-reserva")
-    .get(loginValidator,ReservaController.get)
-    .post(loginValidator, ReservaController.crear)
-    .put(loginValidator, ReservaController.put)
+  .route("/reservations")
+  .post(loginValidator, externoValidator, ReservationsController.crear)
+  .get(loginValidator, externoValidator, ReservationsController.get)
+  .put(loginValidator, externoValidator, ReservationsController.put);
 
 module.exports = reservationsRouter;
