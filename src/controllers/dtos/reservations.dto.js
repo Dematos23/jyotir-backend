@@ -3,17 +3,13 @@
 
 class ReservaDto {
   static crear({
-    userId,
     name,
-    userMany,
-    clienteMany,
-    clientName,
-    assistants,
-    ambienteSolicitado,
-    fecha,
-    horaInicio,
-    horaFin,
+    date,
+    startTime,
+    endTime,
     implementos,
+    office,
+    state
   }) {
     if (
       !{

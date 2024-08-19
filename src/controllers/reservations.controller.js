@@ -1,8 +1,8 @@
 const ReservaService = require("../services/reserva.service");
-const ReservaDto = require("../services/dtos/reserva.dto");
+const ReservaDto = require("./dtos/reservations.dto");
 
 class ReservationsController {
-  static async crear(req, res) {
+  static async post(req, res) {
     try {
       const data = ReservaDto.crear(req.body);
       const reserva = await ReservaService.crear(data);
