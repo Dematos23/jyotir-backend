@@ -8,16 +8,15 @@ datasource db {
 }
 
 model Users {
-  id            String           @id @default(uuid()) @unique
-  email         String        @unique
+  id            String              @id @unique @default(uuid())
+  email         String              @unique
   name          String
   lastname      String
   spiritualName String?
   password      String
-  // reserva       Reserva[]     @relation("UserReserva")
-  // UserReserva   UserReserva[]
   role          Role
   state         UserState
+  reservations  UsersReservations[]
 }
 
 enum Role {
@@ -28,68 +27,69 @@ enum Role {
 }
 
 enum UserState {
-  ACTIVO 
+  ACTIVO
   INACTIVO
 }
 
-// model Reserva {
-//   id                 Int           @id @default(autoincrement())
-//   createdAt          DateTime      @default(now())
-//   updatedAt          DateTime      @updatedAt
-//   evaluatedAt        DateTime?
-//   userId             Int
-//   name               String
-//   userMany           Boolean
-//   users              User[]        @relation("UserReserva")
-//   UserReserva        UserReserva[]
-//   clienteMany        Boolean
-//   clientName         String?
-//   assistants         Int
-//   listaCanal         Canal?
-//   ambienteSolicitado Ambiente
-//   ambienteAsignado   Ambiente?
-//   fecha              DateTime
-//   horaInicio         DateTime
-//   horaFin            DateTime
-//   implementos        String?
-//   estado             Estados       @default(PENDIENTE)
-// }
+model Reservations {
+  id          String                @id @unique @default(uuid())
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+  name        String
+  date        DateTime
+  startTime   DateTime
+  endTime     DateTime
+  implementos String?
+  rejection   String?
+  office      Office
+  state       ReservationState
+  clients     ClientsReservations[]
+  users       UsersReservations[]
+}
 
-// model UserReserva {
-//   userId    Int
-//   reservaId Int
+enum ReservationState {
+  APROBADO
+  EVALUACION
+  OBSERVACION
+  RECHAZADO
+}
 
-//   user    User    @relation(fields: [userId], references: [id])
-//   reserva Reserva @relation(fields: [reservaId], references: [id])
+enum Office {
+  SALON_PRINCIPAL
+  SALON_ESPEJO
+  SALA_1
+  CONSULTORIO_1
+  CONSULTORIO_2
+}
 
-//   @@id([userId, reservaId])
-// }
+model Clients {
+  id               String                @id @unique @default(uuid())
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  name             String
+  lastname         String
+  Dni              Int                   @unique
+  email            String                @unique
+  phone            String                @unique
+  emergencyContact String?
+  district         String?
+  reservations     ClientsReservations[]
+}
 
-// enum Canal {
-//   WHATSAPP
-//   CORREO
-//   TELEFONO
-// }
+model UsersReservations {
+  userId        String
+  reservationId String
+  users         Users        @relation(fields: [userId], references: [id])
+  reservations  Reservations @relation(fields: [reservationId], references: [id])
 
-// enum Ambiente {
-//   SALON_PRINCIPAL
-//   SALON_ESPEJO
-//   SALA_1
-//   CONSULTORIO_1
-//   CONSULTORIO_2
-// }
+  @@id([userId, reservationId])
+}
 
-// enum Implementos {
-//   HOJAS
-//   LAPICEROS
-//   COLORES
-//   PAPEL_TOALLA
-//   SILLAS_CIRCULO
-//   SILLAS_FILA
-// }
+model ClientsReservations {
+  clientId      String
+  reservationId String
+  reservations  Reservations @relation(fields: [reservationId], references: [id])
+  clients       Clients      @relation(fields: [clientId], references: [id])
 
-// enum Estados {
-//   PENDIENTE
-//   APROBADO
-//   RECHAZADO
-// }
+  @@id([clientId, reservationId])
+}

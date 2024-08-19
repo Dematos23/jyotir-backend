@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const { json } = require("express");
 const cors = require("cors");
 const authRouter = require("./routes/auth.routes.js");
-const reservaRouter = require("./routes/reserva.routes.js");
+const reservationsRouter = require("./routes/reservations.routes.js");
 const usersRouter = require("./routes/users.routes.js");
 
 const app = express();
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
 
 app.use(authRouter);
-app.use(reservaRouter);
+app.use(reservationsRouter);
 app.use(usersRouter);
 
 app.get("/", (req, res) => {

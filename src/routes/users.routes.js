@@ -12,15 +12,20 @@ usersRouter
   .route("/users")
   .post(loginValidator, superAdminValidator, ReservaController.post)
   .get(loginValidator, adminValidator, ReservaController.get)
-  .put(loginValidator, superAdminValidator, ReservaController.put)
+  .put(loginValidator, superAdminValidator, ReservaController.put);
 
 usersRouter
   .route("/profile")
   .get(loginValidator, ReservaController.getProfile)
   .put(loginValidator, actualUserValidator, ReservaController.putProfile);
 
-  usersRouter
+usersRouter
   .route("/reset-password")
-  .put(loginValidator,superAdminValidator, activeUserValidator, ReservaController.putResetPassword);
+  .put(
+    loginValidator,
+    superAdminValidator,
+    activeUserValidator,
+    ReservaController.putResetPassword
+  );
 
 module.exports = usersRouter;

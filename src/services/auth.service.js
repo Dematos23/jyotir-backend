@@ -1,6 +1,7 @@
 const prisma = require("../utils/prisma");
 const passVerify = require("../middlewares/passVerify");
 const jwToken = require("../utils/jwToken");
+const passHash = require("../../src/utils/passHash.js");
 
 class AuthService {
   static async login(body) {
@@ -18,7 +19,10 @@ class AuthService {
         state: true,
       },
     });
-    if (passVerify(user.password, body.password)) {
+
+    const match = await passVerify(user.password, body.password)
+
+    if (match) {
       delete user.password;
       const token = jwToken(user);
       return { message: "Login correcto", token, user };

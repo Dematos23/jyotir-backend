@@ -2,12 +2,12 @@ const { Router } = require("express");
 const ReservaController = require("../controllers/reserva.controller")
 const loginValidator = require("../middlewares/loginValidator")
 
-const reservaRouter = Router();
+const reservationsRouter = Router();
 
-reservaRouter
+reservationsRouter
     .route("/req-reserva")
     .get(loginValidator,ReservaController.get)
     .post(loginValidator, ReservaController.crear)
     .put(loginValidator, ReservaController.put)
 
-module.exports = reservaRouter;
+module.exports = reservationsRouter;
