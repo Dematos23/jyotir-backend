@@ -1,57 +1,41 @@
 // const EstadosEnum = require("../../../prisma/schema.prisma").Estados;
 // const estadosArray = Object.values(EstadosEnum );
 
-class ReservaDto {
-  static crear({
-    name,
-    date,
-    startTime,
-    endTime,
-    implementos,
-    office,
-    state
-  }) {
+class ReservationsDto {
+  static post({ name, date, startTime, endTime, implementos, office, state }) {
     if (
       !{
-        userId,
         name,
-        userMany,
-        clienteMany,
-        clientName,
-        assistants,
-        ambienteSolicitado,
-        fecha,
-        horaInicio,
-        horaFin,
+        date,
+        startTime,
+        endTime,
         implementos,
+        office,
+        state,
       }
     ) {
       throw Error("No se ha pasado un body al Dto");
     }
-    const [horaI, minutosI, segundosI] = horaInicio.split(":").map(Number);
-    horaInicio = new Date();
-    horaInicio.setHours(horaI);
-    horaInicio.setMinutes(minutosI);
-    horaInicio.setSeconds(segundosI);
+    // const [horaI, minutosI, segundosI] = horaInicio.split(":").map(Number);
+    // horaInicio = new Date();
+    // horaInicio.setHours(horaI);
+    // horaInicio.setMinutes(minutosI);
+    // horaInicio.setSeconds(segundosI);
 
-    const [horaF, minutosF, segundosF] = horaFin.split(":").map(Number);
-    horaFin = new Date();
-    horaFin.setHours(horaF);
-    horaFin.setMinutes(minutosF);
-    horaFin.setSeconds(segundosF);
+    // const [horaF, minutosF, segundosF] = horaFin.split(":").map(Number);
+    // horaFin = new Date();
+    // horaFin.setHours(horaF);
+    // horaFin.setMinutes(minutosF);
+    // horaFin.setSeconds(segundosF);
 
     return {
-      userId,
       name,
-      userMany,
-      clienteMany,
-      clientName,
-      assistants,
-      ambienteSolicitado,
-      fecha,
-      horaInicio,
-      horaFin,
+      date,
+      startTime,
+      endTime,
       implementos,
+      office,
+      state,
     };
   }
   static get({ userId }) {
@@ -98,8 +82,8 @@ class ReservaDto {
       throw Error("No se ha enviado un estado válido");
     }
 
-    return [{ id}, {ambienteAsignado, estado }];
+    return [{ id }, { ambienteAsignado, estado }];
   }
 }
 
-module.exports = ReservaDto;
+module.exports = ReservationsDto;

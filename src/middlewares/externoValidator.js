@@ -8,8 +8,8 @@ async function externoValidator(req, res, next) {
   }
 
   if (
-    currentUser.role !== "EXTERNO" ||
-    currentUser.role !== "SUPER_ADMIN" ||
+    currentUser.role !== "EXTERNO" &&
+    currentUser.role !== "SUPER_ADMIN" &&
     currentUser.role !== "DEV"
   ) {
     return res.status(401).json({ message: "No tienes permisos para realizar esta acción" });

@@ -1,11 +1,12 @@
 const prisma = require("../utils/prisma");
 
-class ReservaService {
-  static async crear(data) {
-    const reserva = await prisma.reserva.create({
-      data: data,
-    });
-    return reserva;
+class ReservationsService {
+  static async post(data) {
+    // const reservation = await prisma.reserva.create({
+    //   data: data,
+    // });
+const reservation = {message: "Reservations Service"}
+    return reservation;
   }
 
   static async get(data) {
@@ -31,4 +32,4 @@ class ReservaService {
   }
 }
 
-module.exports = ReservaService;
+module.exports = ReservationsService;

@@ -1,12 +1,15 @@
-const ReservaService = require("../services/reserva.service");
-const ReservaDto = require("./dtos/reservations.dto");
+const ReservationsService = require("../services/reservations.service");
+const ReservationsDto = require(".`/dtos/reservations.dto");
 
 class ReservationsController {
   static async post(req, res) {
     try {
-      const data = ReservaDto.crear(req.body);
-      const reserva = await ReservaService.crear(data);
-      return res.status(201).json(reserva);
+      console.log(req.body);
+      const data = ReservationsDto(req.body);
+      console.log(data);
+
+      const reservation = await ReservationsService.post(data);
+      return res.status(201).json(reservation);
     } catch (error) {
       return res.status(400).json({
         message: "Error al crear reserva",
@@ -17,8 +20,8 @@ class ReservationsController {
 
   static async get(req, res) {
     try {
-      const data = ReservaDto.get(req.body);
-      const reservas = await ReservaService.get(data);
+      const data = ReservationsDto.get(req.body);
+      const reservas = await ReservationsService.get(data);
       return res.status(200).json(reservas);
     } catch (error) {
       return res.status(400).json({
@@ -28,30 +31,31 @@ class ReservationsController {
     }
   }
 
-  static async delete(req, res){
+  static async delete(req, res) {
     try {
-      const data = ReservaDto.delete(req.body);
-      const reserva = await ReservaService.delete(data);
+      const data = ReservationsDto.delete(req.body);
+      const reserva = await ReservationsService.delete(data);
       return res.status(204).json(reserva);
     } catch (error) {
       return res.status(400).json({
         message: "Error al borrar la reserva",
         content: error.message,
-      })
+      });
     }
   }
 
   static async put(req, res) {
     try {
-      const data = ReservaDto.put(req.body)
-      const reserva = await ReservaService.put(data);
+      const data = ReservationsDto.put(req.body);
+      const reserva = await ReservationsService.put(data);
       return res.status(200).json(reserva);
     } catch (error) {
       return res.status(400).json({
         message: "Error al actualizar la reserva",
         content: error.message,
-      })
+      });
     }
-}}
+  }
+}
 
 module.exports = ReservationsController;

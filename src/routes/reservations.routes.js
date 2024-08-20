@@ -7,7 +7,7 @@ const reservationsRouter = Router();
 
 reservationsRouter
   .route("/reservations")
-  .post(loginValidator, externoValidator, ReservationsController.crear)
+  .post(loginValidator, externoValidator, ReservationsController.post)
   .get(loginValidator, externoValidator, ReservationsController.get)
   .put(loginValidator, externoValidator, ReservationsController.put);
 
