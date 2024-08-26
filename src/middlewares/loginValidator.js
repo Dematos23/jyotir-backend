@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const prisma = require("../utils/prisma");
 const key = process.env.JWT_SECRET;
 const findUser = require("../utils/findUser");
 

@@ -2,32 +2,95 @@ const prisma = require("../utils/prisma");
 
 class ReservationsService {
   static async post(data) {
-    // const reservation = await prisma.reserva.create({
-    //   data: data,
-    // });
-const reservation = {message: "Reservations Service"}
+    const { name, startTime, endTime, implementos, office, state, userIds, clientIds } = data;
+    const reservation = await prisma.reservations.create({
+      data: {
+        name,
+        startTime,
+        endTime,
+        implementos,
+        office,
+        state,
+        users: {
+          connect: userIds.map((userId) => ({ id: userId })),
+        },
+        clients: {
+          connect: clientIds.map((clientId) => ({ id: clientId })),
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        startTime: true,
+        endTime: true,
+        implementos: true,
+        observation: true,
+        office: true,
+        state: true,
+      },
+    });
     return reservation;
   }
 
   static async get(data) {
-    const reservas = await prisma.reserva.findMany({
-      where: { userId: data.userId },
+    const { currentUserId } = data;
+    return await prisma.reservations.findMany({
+      where: {
+        users: {
+          some: {
+            id: currentUserId,
+          },
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        startTime: true,
+        endTime: true,
+        implementos: true,
+        observation: true,
+        office: true,
+        state: true,
+        clients: true,
+      },
     });
-    return reservas;
+  }
+  static async getEval(data) {
+    return await prisma.reservations.findMany({
+      select: {
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        name: true,
+        startTime: true,
+        endTime: true,
+        implementos: true,
+        observation: true,
+        office: true,
+        state: true,
+        users: true,
+        clients: true,
+      },
+    });
   }
 
-  static async delete(data) {
-    const reserva = await prisma.reserva.delete({
-      where: { id: data.id },
+  static async put(data) {
+    const reservation = await prisma.reservations.update({
+      where: { id: data[0].id },
+      data: data[1],
     });
-    return reserva;
+    return reservation;
   }
 
-  static async put(data){
-    const reserva = await prisma.reserva.update({
-      where:{ id: data[0].id},
-      data: data[1]
-    })
+  static async putEval(data) {
+    const reserva = await prisma.reservations.update({
+      where: { id: data.reservationId },
+      data: {
+        state: data.state,
+        office: data.office,
+        observation: data.observation,
+      },
+    });
     return reserva;
   }
 }

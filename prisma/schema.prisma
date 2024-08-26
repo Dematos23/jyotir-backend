@@ -8,15 +8,15 @@ datasource db {
 }
 
 model Users {
-  id            String              @id @unique @default(uuid())
-  email         String              @unique
+  id            String         @id @unique @default(uuid())
+  email         String         @unique
   name          String
   lastname      String
   spiritualName String?
   password      String
   role          Role
   state         UserState
-  reservations  UsersReservations[]
+  reservations  Reservations[] @relation("ReservationsUsers")
 }
 
 enum Role {
@@ -32,18 +32,18 @@ enum UserState {
 }
 
 model Reservations {
-  id          String                @id @unique @default(uuid())
-  createdAt   DateTime              @default(now())
-  updatedAt   DateTime              @updatedAt
+  id          String           @id @unique @default(uuid())
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
   name        String
   startTime   DateTime
   endTime     DateTime
   implementos String?
-  rejection   String?
-  office      Office
+  observation   String?
+  office      Office?
   state       ReservationState
-  clients     ClientsReservations[]
-  users       UsersReservations[]
+  clients     Clients[]        @relation("ReservationssClients")
+  users       Users[]          @relation("ReservationsUsers")
 }
 
 enum ReservationState {
@@ -62,33 +62,33 @@ enum Office {
 }
 
 model Clients {
-  id               String                @id @unique @default(uuid())
-  createdAt        DateTime              @default(now())
-  updatedAt        DateTime              @updatedAt
+  id               String         @id @unique @default(uuid())
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
   name             String
   lastname         String
-  dni              String                @unique
-  email            String                @unique
-  phone            String                @unique
+  dni              String?        @unique
+  email            String?        @unique
+  phone            String?        @unique
   emergencyContact String?
   district         String?
-  reservations     ClientsReservations[]
+  reservations     Reservations[] @relation("ReservationssClients")
 }
 
-model UsersReservations {
-  userId        String
-  reservationId String
-  users         Users        @relation(fields: [userId], references: [id])
-  reservations  Reservations @relation(fields: [reservationId], references: [id])
+// model UsersReservations {
+//   userId        String
+//   reservationId String
+//   users         Users        @relation(fields: [userId], references: [id])
+//   reservations  Reservations @relation(fields: [reservationId], references: [id])
 
-  @@id([userId, reservationId])
-}
+//   @@id([userId, reservationId])
+// }
 
-model ClientsReservations {
-  clientId      String
-  reservationId String
-  reservations  Reservations @relation(fields: [reservationId], references: [id])
-  clients       Clients      @relation(fields: [clientId], references: [id])
+// model ClientsReservations {
+//   clientId      String
+//   reservationId String
+//   reservations  Reservations @relation(fields: [reservationId], references: [id])
+//   clients       Clients      @relation(fields: [clientId], references: [id])
 
-  @@id([clientId, reservationId])
-}
+//   @@id([clientId, reservationId])
+// }

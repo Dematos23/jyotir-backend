@@ -1,55 +1,36 @@
-// const EstadosEnum = require("../../../prisma/schema.prisma").Estados;
-// const estadosArray = Object.values(EstadosEnum );
+const findReservation = require("../../utils/findReservation");
 
 class ReservationsDto {
-  static post({ name, date, startTime, endTime, implementos, office, state }) {
-    if (
-      !{
-        name,
-        date,
-        startTime,
-        endTime,
-        implementos,
-        office,
-        state,
-      }
-    ) {
-      throw Error("No se ha pasado un body al Dto");
+  static post({
+    name,
+    startTime,
+    endTime,
+    implementos,
+    office,
+    currentUserId,
+    userIds,
+    clientIds,
+  }) {
+    if (!name || !startTime || !endTime) {
+      throw Error("Faltan datos para crear la reserva");
     }
-    // const [horaI, minutosI, segundosI] = horaInicio.split(":").map(Number);
-    // horaInicio = new Date();
-    // horaInicio.setHours(horaI);
-    // horaInicio.setMinutes(minutosI);
-    // horaInicio.setSeconds(segundosI);
 
-    // const [horaF, minutosF, segundosF] = horaFin.split(":").map(Number);
-    // horaFin = new Date();
-    // horaFin.setHours(horaF);
-    // horaFin.setMinutes(minutosF);
-    // horaFin.setSeconds(segundosF);
+    userIds.push(currentUserId);
 
     return {
       name,
-      date,
       startTime,
       endTime,
       implementos,
       office,
-      state,
+      state: "EVALUACION",
+      userIds,
+      clientIds,
     };
   }
-  static get({ userId }) {
-    if (!{ userId }) {
-      throw Error("No se ha pasado un body al Dto");
-    }
-    return { userId };
-  }
 
-  static delete({ id }) {
-    if (!{ id }) {
-      throw Error("No se ha pasado un body al Dto");
-    }
-    return { id };
+  static get({ currentUserId, currentUserRole }) {
+    return { currentUserId, currentUserRole };
   }
 
   static put({ id, ambienteAsignado, estado }) {
@@ -83,6 +64,23 @@ class ReservationsDto {
     }
 
     return [{ id }, { ambienteAsignado, estado }];
+  }
+  static putEval({ reservationId, state, office, observation }) {
+    const validStates = ["APROBADO", "OBSERVACION", "RECHAZADO"];
+    if (!validStates.includes(state)) {
+      throw new Error("El estado de la reserva no es válido");
+    }
+    const validOffices = [
+      "SALON_PRINCIPAL",
+      "SALON_ESPEJO",
+      "SALA_1",
+      "CONSULTORIO_1",
+      "CONSULTORIO_2",
+    ];
+    if (!validOffices.includes(office)) {
+      throw new Error("El espacio de la reserva no es válido");
+    }
+    return { reservationId, state, office, observation };
   }
 }
 

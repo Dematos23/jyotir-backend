@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRouter = require("./routes/auth.routes.js");
 const reservationsRouter = require("./routes/reservations.routes.js");
 const usersRouter = require("./routes/users.routes.js");
+const clientsRouter = require("./routes/clients.routes.js");
 
 const app = express();
 const port = process.env.PORT ?? 3001;
@@ -17,10 +18,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use(authRouter);
 app.use(reservationsRouter);
 app.use(usersRouter);
+app.use(clientsRouter);
 
 app.get("/", (req, res) => {
   res.send("Get en raiz");

@@ -46,8 +46,6 @@ class UsersService {
       });
     }
     if (body.currentUserRole === "DEV") {
-      console.log("aqui");
-
       return await prisma.users.findMany({
         where: {
           OR: [{ role: "ADMIN" }, { role: "EXTERNO" }, { role: "SUPER_ADMIN" }],
