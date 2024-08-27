@@ -36,10 +36,10 @@ class UsersService {
           OR: [{ role: "ADMIN" }, { role: "EXTERNO" }],
         },
         select: {
-          email: true,
           name: true,
           lastname: true,
           spiritualName: true,
+          email: true,
           role: true,
           state: true,
         },
@@ -51,10 +51,10 @@ class UsersService {
           OR: [{ role: "ADMIN" }, { role: "EXTERNO" }, { role: "SUPER_ADMIN" }],
         },
         select: {
-          email: true,
           name: true,
           lastname: true,
           spiritualName: true,
+          email: true,
           role: true,
           state: true,
         },

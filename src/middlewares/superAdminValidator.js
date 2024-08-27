@@ -11,8 +11,6 @@ async function superAdminValidator(req, res, next) {
     return res.status(401).json({ message: "No tienes permisos para realizar esta acción" });
   }
   next();
-  
-
 }
 
 module.exports = superAdminValidator;

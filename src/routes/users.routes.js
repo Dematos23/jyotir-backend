@@ -1,7 +1,6 @@
 const { Router } = require("express");
-const ReservaController = require("../controllers/users.controller");
+const UsersController = require("../controllers/users.controller");
 const loginValidator = require("../middlewares/loginValidator");
-const adminValidator = require("../middlewares/adminValidator");
 const superAdminValidator = require("../middlewares/superAdminValidator");
 const actualUserValidator = require("../middlewares/actualUserValidator");
 const activeUserValidator = require("../middlewares/activeUserValidator");
@@ -10,22 +9,17 @@ const usersRouter = Router();
 
 usersRouter
   .route("/users")
-  .post(loginValidator, superAdminValidator, ReservaController.post)
-  .get(loginValidator, adminValidator, ReservaController.get)
-  .put(loginValidator, superAdminValidator, ReservaController.put);
+  .post(loginValidator, superAdminValidator, UsersController.post)
+  .get(loginValidator, superAdminValidator, UsersController.get)
+  .put(loginValidator, superAdminValidator, UsersController.put);
 
 usersRouter
   .route("/profile")
-  .get(loginValidator, ReservaController.getProfile)
-  .put(loginValidator, actualUserValidator, ReservaController.putProfile);
+  .get(loginValidator, UsersController.getProfile)
+  .put(loginValidator, actualUserValidator, UsersController.putProfile);
 
 usersRouter
   .route("/reset-password")
-  .put(
-    loginValidator,
-    superAdminValidator,
-    activeUserValidator,
-    ReservaController.putResetPassword
-  );
+  .put(loginValidator, superAdminValidator, activeUserValidator, UsersController.putResetPassword);
 
 module.exports = usersRouter;

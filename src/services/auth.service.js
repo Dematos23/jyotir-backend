@@ -20,11 +20,13 @@ class AuthService {
       },
     });
 
-    const match = await passVerify(user.password, body.password)
+    const match = await passVerify(user.password, body.password);
 
     if (match) {
       delete user.password;
       const token = jwToken(user);
+      delete user.state;
+      delete user.id;
       return { message: "Login correcto", token, user };
     } else {
       return { message: "Credenciales incorrectas" };
