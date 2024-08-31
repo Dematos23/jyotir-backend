@@ -36,6 +36,7 @@ class UsersService {
           OR: [{ role: "ADMIN" }, { role: "EXTERNO" }],
         },
         select: {
+          id: true,
           name: true,
           lastname: true,
           spiritualName: true,
@@ -51,6 +52,7 @@ class UsersService {
           OR: [{ role: "ADMIN" }, { role: "EXTERNO" }, { role: "SUPER_ADMIN" }],
         },
         select: {
+          id: true,
           name: true,
           lastname: true,
           spiritualName: true,
