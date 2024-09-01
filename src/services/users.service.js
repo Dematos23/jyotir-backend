@@ -77,86 +77,6 @@ class UsersService {
 
   static async put(body) {
     const targetUser = await findUser(body);
-    
-
-    // mensajes de error
-    // if (targetUser.state === "INACTIVO" && body.state === "INACTIVO") {
-    //   return { message: "Usuario ya se encuentra inactivo" };
-    // }
-    // if (targetUser.state === "ACTIVO" && body.state === "ACTIVO") {
-    //   return { message: "Usuario ya se encuentra activo" };
-    // }
-    // if (targetUser.state === "INACTIVO" && (body.spiritualName || body.role)) {
-    //   return { message: "Usuario se encuentra inactivo" };
-    // }
-
-    //   actualizaciones de usuario
-    // if (
-    //   targetUser.state === "INACTIVO" &&
-    //   body.state === "ACTIVO" &&
-    //   !body.spiritualName &&
-    //   !body.role
-    // ) {
-    //   return await prisma.users.update({
-    //     where: { id: targetUser.id },
-    //     data: {
-    //       state: body.state,
-    //     },
-    //     select: {
-    //       email: true,
-    //       name: true,
-    //       lastname: true,
-    //       spiritualName: true,
-    //       role: true,
-    //       state: true,
-    //     },
-    //   });
-    // }
-
-    // if (
-    //   targetUser.state === "ACTIVO" &&
-    //   body.state === "INACTIVO" &&
-    //   !body.spiritualName &&
-    //   !body.role
-    // ) {
-    //   return await prisma.users.update({
-    //     where: { id: targetUser.id },
-    //     data: {
-    //       state: body.state,
-    //     },
-    //     select: {
-    //       email: true,
-    //       name: true,
-    //       lastname: true,
-    //       spiritualName: true,
-    //       role: true,
-    //       state: true,
-    //     },
-    //   });
-    // }
-
-    // if (targetUser.state === "ACTIVO" && !body.state && (body.spiritualName || body.role)) {
-    //   return await prisma.users.update({
-    //     where: { id: targetUser.id },
-    //     data: {
-    //       spiritualName: body.spiritualName,
-    //       role: body.role,
-    //     },
-    //     select: {
-    //       email: true,
-    //       name: true,
-    //       lastname: true,
-    //       spiritualName: true,
-    //       role: true,
-    //       state: true,
-    //     },
-    //   });
-    // }
-
-    // return {
-    //   message: "La petición incumple el protocolo para modificar un usuario",
-    // };
-
     return await prisma.users.update({
       where: { id: targetUser.id },
       data: {
@@ -181,21 +101,21 @@ class UsersService {
     const targetUser = await findUser(body);
 
     const user = await prisma.users.update({
-        where: { id: targetUser.id },
-        data: {
-          password: await passHash(password),
-        },
-        select: {
-          email: true,
-          name: true,
-          lastname: true,
-          spiritualName: true,
-          role: true,
-          state: true,
-        },
-      });
-      user.password = password;
-      return user;
+      where: { id: targetUser.id },
+      data: {
+        password: await passHash(password),
+      },
+      select: {
+        email: true,
+        name: true,
+        lastname: true,
+        spiritualName: true,
+        role: true,
+        state: true,
+      },
+    });
+    user.password = password;
+    return user;
   }
 
   static async putProfile(body) {
@@ -206,7 +126,7 @@ class UsersService {
         email: body.newEmail,
         name: body.newName,
         lastname: body.newLastname,
-        password: await passHash(body.newPassword)
+        password: await passHash(body.newPassword),
       },
       select: {
         email: true,

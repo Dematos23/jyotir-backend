@@ -5,8 +5,8 @@ const users = require("./seeds/users.seed.js");
 const clients = require("./seeds/clients.seed.js");
 async function main() {
   await Promise.all([
-    // devUser(prisma), 
-    // users(prisma), 
+    devUser(prisma), 
+    users(prisma), 
     clients(prisma)
   ]);
 }
