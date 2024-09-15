@@ -8,7 +8,7 @@ const usersRouter = require("./routes/users.routes.js");
 const clientsRouter = require("./routes/clients.routes.js");
 
 const app = express();
-const port = process.env.PORT ?? 3001;
+const port = process.env.PORT || 3001;
 
 app.use(morgan("dev"));
 app.use(cors());
