@@ -1,5 +1,10 @@
 {
   "version": 2,
+  "env": {
+    "DATABASE_URL": "postgresql://jyotir_owner:jXApK9L0UWcY@ep-yellow-union-a5tx0k4m.us-east-2.aws.neon.tech/jyotir?sslmode=require",
+    "JWT_SECRET": "Alessandra",
+    "PORT": "3001"
+  },
   "builds": [{ "src": "src/server.js", "use": "@vercel/node" }],
   "routes": [{ "src": "/(.*)", "dest": "src/server.js" }]
 }
