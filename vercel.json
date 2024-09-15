@@ -1,4 +1,20 @@
 {
-  "version": 2,
-  "routes": [{ "src": "/(.*)", "dest": "src/server.js" }]
-}
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/server.js",
+        "use": "@vercel/node",
+        "config": {
+          "maxLambdaSize": "50mb",
+          "includeFiles": ["prisma/**"]
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "src/server.js"
+      }
+    ]
+  }
+  
