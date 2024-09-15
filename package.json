@@ -30,6 +30,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@vercel/node": "^3.2.14",
     "prisma": "^5.10.2"
   }
 }
