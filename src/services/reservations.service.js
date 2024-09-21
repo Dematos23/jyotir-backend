@@ -2,20 +2,20 @@ const prisma = require("../utils/prisma");
 
 class ReservationsService {
   static async post(data) {
-    const { name, startTime, endTime, implementos, office, state, userIds, clientIds } = data;
+    // const { name, startTime, endTime, implementos, office, state, userIds, clientIds } = data;
     const reservation = await prisma.reservations.create({
       data: {
-        name,
-        startTime,
-        endTime,
-        implementos,
-        office,
-        state,
+        name: data.name,
+        startTime: data.startTime,
+        endTime: data.endTime,
+        implementos: data.implementos,
+        office: data.office,
+        state: data.state,
         users: {
-          connect: userIds.map((userId) => ({ id: userId })),
+          connect: data.userIds.map((userId) => ({ id: userId })),
         },
         clients: {
-          connect: clientIds.map((clientId) => ({ id: clientId })),
+          connect: data.clientIds.map((clientId) => ({ id: clientId })),
         },
       },
       select: {

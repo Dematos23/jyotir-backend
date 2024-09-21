@@ -117,7 +117,7 @@ class UsersService {
     user.password = password;
     return user;
   }
-
+// 
   static async putProfile(body) {
     const targetUser = await findUser({ email: body.currentEmail });
     return await prisma.users.update({

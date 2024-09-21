@@ -38,7 +38,7 @@ class ClientsService {
         dni: true,
         email: true,
         phone: true,
-        emergencyContact: true,
+        // emergencyContact: true,
         district: true,
       },
     });

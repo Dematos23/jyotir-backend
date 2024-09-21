@@ -13,10 +13,6 @@ const port = process.env.PORT || 3001;
 app.use(morgan("dev"));
 app.use(
   cors()
-  //   {
-  //   origin: "http://localhost:3000",
-  //   credentials: true, // Si estás manejando cookies o sesiones
-  // }
 );
 app.use(json());
 
