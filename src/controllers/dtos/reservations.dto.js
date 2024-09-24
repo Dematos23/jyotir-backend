@@ -132,7 +132,7 @@ class ReservationsDto {
 
       return {
         ...reservation,
-        date: format(startTime, "dd/mm/yyyy"),
+        date: format(startTime, "dd/MM/yyyy"),
         startTime: format(startTime, "hh:mm aa"),
         endTime: format(endTime, "hh:mm aa"),
         office: officeFormatted,
