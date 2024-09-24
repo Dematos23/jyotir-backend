@@ -1,4 +1,5 @@
-const findReservation = require("../../utils/findReservation");
+const { Office, ReservationState } = require("@prisma/client");
+const { format } = require("date-fns");
 
 class ReservationsDto {
   static post({
@@ -81,6 +82,64 @@ class ReservationsDto {
       throw new Error("El espacio de la reserva no es válido");
     }
     return { reservationId, state, office, observation };
+  }
+
+  static format(reservations) {
+    const formmattedReservations = reservations.map((reservation) => {
+      const startTime = new Date(reservation.startTime);
+      const endTime = new Date(reservation.endTime);
+
+      let officeFormatted;
+
+      switch (reservation.office) {
+        case Office.SALON_PRINCIPAL:
+          officeFormatted = "Salón Principal";
+          break;
+        case Office.SALON_ESPEJO:
+          officeFormatted = "Salón Espejo";
+          break;
+        case Office.SALA_1:
+          officeFormatted = "Sala 1";
+          break;
+        case Office.CONSULTORIO_1:
+          officeFormatted = "Consultorio 1";
+          break;
+        case Office.CONSULTORIO_2:
+          officeFormatted = "Consultorio 2";
+          break;
+        default:
+          officeFormatted = "Espacio no especificado"; // Valor por defecto en caso de que no haya coincidencia
+      }
+
+      let stateFormatted;
+
+      switch (reservation.state) {
+        case ReservationState.APROBADO:
+          stateFormatted = "Aprobado";
+          break;
+        case ReservationState.EVALUACION:
+          stateFormatted = "En Evaluación";
+          break;
+        case ReservationState.OBSERVACION:
+          stateFormatted = "En Observación";
+          break;
+        case ReservationState.RECHAZADO:
+          stateFormatted = "Rechazado";
+          break;
+        default:
+          stateFormatted = "Estado no especificado"; // Valor por defecto en caso de que no haya coincidencia
+      }
+
+      return {
+        ...reservation,
+        date: format(startTime, "dd/mm/yyyy"),
+        startTime: format(startTime, "hh:mm aa"),
+        endTime: format(endTime, "hh:mm aa"),
+        office: officeFormatted,
+        state: stateFormatted,
+      };
+    });
+    return formmattedReservations;
   }
 }
 

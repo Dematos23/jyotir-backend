@@ -39,7 +39,7 @@ model Reservations {
   startTime   DateTime
   endTime     DateTime
   implementos String?
-  observation   String?
+  observation String?
   office      Office?
   state       ReservationState
   clients     Clients[]        @relation("ReservationssClients")
@@ -74,21 +74,3 @@ model Clients {
   district         String?
   reservations     Reservations[] @relation("ReservationssClients")
 }
-
-// model UsersReservations {
-//   userId        String
-//   reservationId String
-//   users         Users        @relation(fields: [userId], references: [id])
-//   reservations  Reservations @relation(fields: [reservationId], references: [id])
-
-//   @@id([userId, reservationId])
-// }
-
-// model ClientsReservations {
-//   clientId      String
-//   reservationId String
-//   reservations  Reservations @relation(fields: [reservationId], references: [id])
-//   clients       Clients      @relation(fields: [clientId], references: [id])
-
-//   @@id([clientId, reservationId])
-// }
