@@ -34,7 +34,7 @@ class ReservationsService {
 
   static async get(data) {
     const { currentUserId } = data;
-    
+
     return await prisma.reservations.findMany({
       where: {
         users: {
@@ -53,6 +53,7 @@ class ReservationsService {
         office: true,
         state: true,
         clients: true,
+        users: true
       },
     });
   }
