@@ -8,7 +8,7 @@ const clientsRouter = Router();
 clientsRouter
   .route("/clients")
   .post(loginValidator, clientCreationValidator, ClientsController.post)
-  .get(loginValidator, clientCreationValidator, ClientsController.get)
+  .get(loginValidator, ClientsController.get)
   .put(loginValidator, clientCreationValidator, ClientsController.put);
 
 module.exports = clientsRouter;
