@@ -9,13 +9,14 @@ class ReservationsService {
         startTime: data.startTime,
         endTime: data.endTime,
         implementos: data.implementos,
+        observation: data.observation,
         office: data.office,
         state: data.state,
         users: {
-          connect: data.userIds.map((userId) => ({ id: userId })),
+          connect: data.users.map((id) => ({ id: id })),
         },
         clients: {
-          connect: data.clientIds.map((clientId) => ({ id: clientId })),
+          connect: data.clients.map((clientId) => ({ id: clientId })),
         },
       },
       select: {
@@ -27,6 +28,8 @@ class ReservationsService {
         observation: true,
         office: true,
         state: true,
+        users: { select: { id: true } },
+        clients: { select: { id: true } },
       },
     });
     return reservation;
@@ -52,8 +55,8 @@ class ReservationsService {
         observation: true,
         office: true,
         state: true,
-        clients: true,
-        users: true
+        users: { select: { id: true } },
+        clients: { select: { id: true } },
       },
     });
   }
@@ -70,8 +73,8 @@ class ReservationsService {
         observation: true,
         office: true,
         state: true,
-        users: true,
-        clients: true,
+        users: { select: { id: true } },
+        clients: { select: { id: true } },
       },
     });
   }

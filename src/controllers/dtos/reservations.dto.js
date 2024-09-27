@@ -7,26 +7,28 @@ class ReservationsDto {
     startTime,
     endTime,
     implementos,
+    observation,
     office,
     currentUserId,
-    userIds,
-    clientIds,
+    users,
+    clients,
   }) {
     if (!name || !startTime || !endTime) {
       throw Error("Faltan datos para crear la reserva");
     }
 
-    userIds.push(currentUserId);
+    users.push(currentUserId);
 
     return {
       name,
       startTime,
       endTime,
       implementos,
+      observation,
       office,
       state: "EVALUACION",
-      userIds,
-      clientIds,
+      users,
+      clients,
     };
   }
 
