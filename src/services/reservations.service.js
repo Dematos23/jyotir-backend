@@ -81,15 +81,15 @@ class ReservationsService {
 
   static async put(data) {
     const reservation = await prisma.reservations.update({
-      where: { id: data[0].id },
-      data: data[1],
+      where: { id: data.id },
+      data: data,
     });
     return reservation;
   }
 
   static async putEval(data) {
     const reserva = await prisma.reservations.update({
-      where: { id: data.reservationId },
+      where: { id: data.id },
       data: {
         state: data.state,
         office: data.office,

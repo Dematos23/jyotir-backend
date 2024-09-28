@@ -68,8 +68,41 @@ class ReservationsDto {
 
     return [{ id }, { ambienteAsignado, estado }];
   }
-  static putEval({ reservationId, state, office, observation }) {
-    const validStates = ["APROBADO", "OBSERVACION", "RECHAZADO"];
+  static putEval({ id, state, office, observation }) {
+    switch (state) {
+      case "Aprobado":
+        state = "APROBADO";
+        break;
+      case "Evaluación":
+        state = "EVALUACION";
+        break;
+      case "Observación":
+        state = "OBSERVACION";
+        break;
+      case "Rechazado":
+        state = "RECHAZADO";
+        break;
+    }
+
+    switch (office) {
+      case "Salón principal":
+        office = "SALON_PRINCIPAL";
+        break;
+      case "Salón espejo":
+        office = "SALON_ESPEJO";
+        break;
+      case "Sala 1":
+        office = "SALA_1";
+        break;
+      case "Consultorio 1":
+        office = "CONSULTORIO_1";
+        break;
+      case "Consultorio 2":
+        office = "CONSULTORIO_2";
+        break;
+    }
+
+    const validStates = ["APROBADO", "EVALUACION", "OBSERVACION", "RECHAZADO"];
     if (!validStates.includes(state)) {
       throw new Error("El estado de la reserva no es válido");
     }
@@ -83,7 +116,8 @@ class ReservationsDto {
     if (!validOffices.includes(office)) {
       throw new Error("El espacio de la reserva no es válido");
     }
-    return { reservationId, state, office, observation };
+
+    return { id, state, office, observation };
   }
 
   static format(reservations) {
@@ -95,10 +129,10 @@ class ReservationsDto {
 
       switch (reservation.office) {
         case Office.SALON_PRINCIPAL:
-          officeFormatted = "Salón Principal";
+          officeFormatted = "Salón principal";
           break;
         case Office.SALON_ESPEJO:
-          officeFormatted = "Salón Espejo";
+          officeFormatted = "Salón espejo";
           break;
         case Office.SALA_1:
           officeFormatted = "Sala 1";
@@ -120,16 +154,16 @@ class ReservationsDto {
           stateFormatted = "Aprobado";
           break;
         case ReservationState.EVALUACION:
-          stateFormatted = "En Evaluación";
+          stateFormatted = "Evaluación";
           break;
         case ReservationState.OBSERVACION:
-          stateFormatted = "En Observación";
+          stateFormatted = "Observación";
           break;
         case ReservationState.RECHAZADO:
           stateFormatted = "Rechazado";
           break;
         default:
-          stateFormatted = "Estado no especificado"; // Valor por defecto en caso de que no haya coincidencia
+          stateFormatted = "Estado no especificado";
       }
 
       return {
