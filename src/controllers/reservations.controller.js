@@ -4,8 +4,9 @@ const ReservationsDto = require("./dtos/reservations.dto");
 class ReservationsController {
   static async post(req, res) {
     try {
+      
       const data = ReservationsDto.post(req.body);
-
+      
       const reservation = await ReservationsService.post(data);
       return res.status(201).json(reservation);
     } catch (error) {

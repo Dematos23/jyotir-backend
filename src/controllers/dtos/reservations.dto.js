@@ -17,7 +17,7 @@ class ReservationsDto {
       throw Error("Faltan datos para crear la reserva");
     }
 
-    users.push(currentUserId);
+    users.push({id: currentUserId});
 
     return {
       name,

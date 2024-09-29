@@ -13,10 +13,10 @@ class ReservationsService {
         office: data.office,
         state: data.state,
         users: {
-          connect: data.users.map((id) => ({ id: id })),
+          connect: data.users.map((user) => ({ id: user.id })),
         },
         clients: {
-          connect: data.clients.map((clientId) => ({ id: clientId })),
+          connect: data.clients.map((client) => ({ id: client.id })),
         },
       },
       select: {
@@ -55,8 +55,8 @@ class ReservationsService {
         observation: true,
         office: true,
         state: true,
-        users: { select: { id: true } },
-        clients: { select: { id: true } },
+        users: { select: { id: true, name: true, lastname:true } },
+        clients: { select: { id: true, name: true, lastname:true } },
       },
     });
   }
