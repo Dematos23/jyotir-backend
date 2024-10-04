@@ -55,8 +55,8 @@ class ReservationsService {
         observation: true,
         office: true,
         state: true,
-        users: { select: { id: true, name: true, lastname:true } },
-        clients: { select: { id: true, name: true, lastname:true } },
+        users: { select: { id: true, name: true, lastname: true } },
+        clients: { select: { id: true, name: true, lastname: true } },
       },
     });
   }
