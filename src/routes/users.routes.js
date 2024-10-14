@@ -22,4 +22,8 @@ usersRouter
   .route("/reset-password")
   .put(loginValidator, superAdminValidator, activeUserValidator, UsersController.putResetPassword);
 
+  usersRouter
+  .route("/externos")
+  .get(loginValidator, UsersController.externos);
+
 module.exports = usersRouter;

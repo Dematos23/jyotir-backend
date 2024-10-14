@@ -19,6 +19,15 @@ class UsersController {
     }
   }
 
+  static async externos(req, res) {
+    try {
+      const users = await UsersService.externos(req.body);
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
   static async getProfile(req, res) {
     try {
       const user = await UsersService.getProfile(req.body);

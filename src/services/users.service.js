@@ -64,6 +64,24 @@ class UsersService {
     }
   }
 
+  static async externos() {
+    return await prisma.users.findMany({
+      where: {
+        role: "EXTERNO",
+        state: "ACTIVO",
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        lastname: true,
+        spiritualName: true,
+        role: true,
+        state: true,
+      },
+    });
+  }
+
   static async getProfile(body) {
     const user = await findUser({ id: body.currentUserId });
     const profile = {
@@ -117,7 +135,7 @@ class UsersService {
     user.password = password;
     return user;
   }
-// 
+  //
   static async putProfile(body) {
     const targetUser = await findUser({ email: body.currentEmail });
     return await prisma.users.update({
