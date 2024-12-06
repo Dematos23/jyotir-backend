@@ -27,7 +27,7 @@ class AuthService {
       const token = jwToken(user);
       delete user.state;
       delete user.id;
-      return { message: "Login correcto", token, user };
+      return { token, user };
     } else {
       return { message: "Credenciales incorrectas" };
     }
