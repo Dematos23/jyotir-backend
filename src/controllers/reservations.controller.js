@@ -33,8 +33,9 @@ class ReservationsController {
   static async getEval(req, res) {
     try {
       const data = ReservationsDto.get(req.body);
-      const reservas = await ReservationsService.getEval(data);
-      return res.status(200).json(reservas);
+      const rawReservations = await ReservationsService.getEval(data);
+      const cleanReservations = ReservationsDto.format(rawReservations);
+      return res.status(200).json(cleanReservations);
     } catch (error) {
       return res.status(400).json({
         message: "Error al cargar las reservas",

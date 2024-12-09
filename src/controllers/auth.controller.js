@@ -7,7 +7,10 @@ async function login(req, res) {
   } catch (error) {
     res
       .status(500)
-      .json({ error: error.message, message: "Controller Error al hacer login" });
+      .json({
+        error: error.message,
+        message: "Controller Error al hacer login",
+      });
   }
 }
 
